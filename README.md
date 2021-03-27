@@ -28,6 +28,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![How Angular Material was added](images/how-angular-material-was-added.gif)
 
+### How unit tests are run
+
+`yarn test`
+
+![How unit tests are run](images/how-unit-tests-are-run.gif)
+
+**Note:** Karma was [configured to run on headless Chrome](projects/demo/karma.conf.js#L40). The default setup would open a new Chrome instance.
+
 ## Development
 
 ### Development server
