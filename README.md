@@ -107,6 +107,14 @@ yarn lint
 
 **Note:** TS Lint is deprecated and is expected to be replaced by Angular team.
 
+### How mock library was generated
+
+```sh
+yarn ng g library mock --entry-file=index --skip-package-json
+```
+
+![How mock library was generated](images/how-mock-library-was-generated.gif)
+
 ## Development
 
 ### Development server
