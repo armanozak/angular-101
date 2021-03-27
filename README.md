@@ -16,6 +16,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![How demo app was generated](images/how-demo-app-was-generated.gif)
 
+### What demo app initially looked like
+
+`yarn start --open`
+
+![What demo app initially looked like](images/what-demo-app-initially-looked-like.gif)
+
 ## Development
 
 ### Development server
