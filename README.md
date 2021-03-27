@@ -109,11 +109,27 @@ yarn lint
 
 ### How mock library was generated
 
+**Important:** This step is not needed when developing Angular apps with a backend.
+
 ```sh
 yarn ng g library mock --entry-file=index --skip-package-json
 ```
 
 ![How mock library was generated](images/how-mock-library-was-generated.gif)
+
+### How MSW and PouchDB were integrated
+
+**Important:** This step is not needed when developing Angular apps with a backend.
+
+1. Installed [dependencies](package.json).
+2. Added pouchdb to [script injected by Angular](angular.json#L39) when app is built.
+3. Used MSW CLI to create [mockServiceWorker.js](projects/demo/src/mockServiceWorker.js) and [added the generated file to assets](angular.json#L32).
+4. Created [models and request handlers](projects/mock/src/lib).
+5. Initiated msw [only in development](projects/demo/src/environments/environment.ts).
+
+![How mock requests work](images/how-mock-requests-work.gif)
+
+**Note:** Using MSW is a personal preference. There are other mocking options such as [Angular in-memory-web-api](https://github.com/angular/angular/tree/master/packages/misc/angular-in-memory-web-api) or providing mock services with dependency injection.
 
 ## Development
 
