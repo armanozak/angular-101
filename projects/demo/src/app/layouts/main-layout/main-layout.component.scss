@@ -1,0 +1,27 @@
+@import "~@angular/material/theming";
+
+.title {
+  display: inline-block;
+  padding: 0 0.5em;
+  vertical-align: middle;
+}
+
+main {
+  min-height: calc(100vh - 100px);
+}
+
+footer {
+  background: mat-color($mat-grey, 200);
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-icon {
+    color: mat-color($mat-pink, 200);
+    width: 1rem;
+    height: 1rem;
+    font-size: 1rem;
+    margin-left: 4px;
+  }
+}
