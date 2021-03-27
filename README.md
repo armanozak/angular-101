@@ -6,31 +6,41 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### How this workspace was generated
 
-`npx @angular/cli new ng101 --directory=angular-101 --package-manager=yarn --strict --create-application=false`
+```sh
+npx @angular/cli new ng101 --directory=angular-101 --package-manager=yarn --strict --create-application=false
+```
 
 ![How this workspace was generated](images/how-this-workspace-was-generated.gif)
 
 ### How demo app was generated
 
-`yarn ng generate application demo --routing --style=scss`
+```sh
+yarn ng generate application demo --routing --style=scss
+```
 
 ![How demo app was generated](images/how-demo-app-was-generated.gif)
 
 ### What demo app initially looked like
 
-`yarn start --open`
+```sh
+yarn start --open
+```
 
 ![What demo app initially looked like](images/what-demo-app-initially-looked-like.gif)
 
 ### How Angular Material was added
 
-`yarn ng add @angular/material`
+```sh
+yarn ng add @angular/material
+```
 
 ![How Angular Material was added](images/how-angular-material-was-added.gif)
 
 ### How unit tests are run
 
-`yarn test`
+```sh
+yarn test
+```
 
 ![How unit tests are run](images/how-unit-tests-are-run.gif)
 
@@ -38,9 +48,29 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### How lazy-loaded module was added
 
-`yarn ng generate module todo-list --module=app --route=todo-list`
+```sh
+yarn ng g module todo-list --module=app --route=todo-list
+```
 
 ![How lazy-loaded module was added](images/how-lazy-loaded-module-was-added.gif)
+
+**Note:** `g` is the short alias for `generate`.
+
+### How to generate a layout
+
+```sh
+# first create the module
+yarn ng g module layouts/main-layout --module=todo-list/todo-list
+
+# then create the component
+yarn ng g component layouts/main-layout/main-layout --export --change-detection=OnPush --flat
+```
+
+![Main layout before theming](images/main-layout-before-theming.png)
+
+**Note 1:** [Configured todo list routing](projects/demo/src/app/todo-list/todo-list-routing.module.ts) to have nested routes.
+
+**Note 2:** Obviously, [some styles](projects/demo/src/app/layouts/main-layout/main-layout.component.scss) as well as [Material components](projects/demo/src/app/layouts/main-layout/main-layout.component.html) were used to get that result.
 
 ## Development
 
