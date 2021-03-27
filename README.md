@@ -22,6 +22,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![What demo app initially looked like](images/what-demo-app-initially-looked-like.gif)
 
+### How Angular Material was added
+
+`yarn ng add @angular/material`
+
+![How Angular Material was added](images/how-angular-material-was-added.gif)
+
 ## Development
 
 ### Development server
