@@ -10,6 +10,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![How this workspace was generated](images/how-this-workspace-was-generated.gif)
 
+### How demo app was generated
+
+`yarn ng generate application demo --routing --style=scss`
+
+![How demo app was generated](images/how-demo-app-was-generated.gif)
+
 ## Development
 
 ### Development server
