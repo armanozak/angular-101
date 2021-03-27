@@ -17,7 +17,7 @@ export class MainLayoutComponent {
     this.registerIcon('github');
   }
 
-  private registerIcon(name: string) {
+  private registerIcon(name: string): void {
     const source = this.sanitizer.bypassSecurityTrustResourceUrl(
       `/assets/icons/${name}.svg`
     );
