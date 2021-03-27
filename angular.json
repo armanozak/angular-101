@@ -109,9 +109,7 @@
               "projects/demo/tsconfig.spec.json",
               "projects/demo/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -124,6 +122,32 @@
             "production": {
               "devServerTarget": "demo:serve:production"
             }
+          }
+        }
+      }
+    },
+    "mock": {
+      "projectType": "library",
+      "root": "projects/mock",
+      "sourceRoot": "projects/mock/src",
+      "prefix": "lib",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mock/src/test.ts",
+            "tsConfig": "projects/mock/tsconfig.spec.json",
+            "karmaConfig": "projects/mock/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mock/tsconfig.lib.json",
+              "projects/mock/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
