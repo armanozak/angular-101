@@ -36,6 +36,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 **Note:** Karma was [configured to run on headless Chrome](projects/demo/karma.conf.js#L40). The default setup would open a new Chrome instance.
 
+### How lazy-loaded module was added
+
+`yarn ng generate module todo-list --module=app --route=todo-list`
+
+![How lazy-loaded module was added](images/how-lazy-loaded-module-was-added.gif)
+
 ## Development
 
 ### Development server
