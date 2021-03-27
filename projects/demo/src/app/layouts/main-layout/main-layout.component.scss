@@ -1,9 +1,14 @@
-@import "~@angular/material/theming";
+@import "../../../sass/variables";
 
 .title {
   display: inline-block;
   padding: 0 0.5em;
   vertical-align: middle;
+}
+
+.title,
+mat-icon {
+  color: mat-color($app-accent, 600);
 }
 
 main {
