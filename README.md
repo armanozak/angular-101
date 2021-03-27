@@ -72,6 +72,31 @@ yarn ng g component layouts/main-layout/main-layout --export --change-detection=
 
 **Note 2:** Obviously, [some styles](projects/demo/src/app/layouts/main-layout/main-layout.component.scss) as well as [Material components](projects/demo/src/app/layouts/main-layout/main-layout.component.html) were used to get that result.
 
+### How to customize Material theme
+
+```scss
+@import "~@angular/material/theming";
+
+$app-primary: mat-palette($mat-blue-grey, 900);
+$app-accent: mat-palette($mat-yellow, 700);
+$app-warn: mat-palette($mat-red, 600);
+$app-theme: mat-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn,
+    ),
+  )
+);
+```
+
+![Main layout after theming](images/main-layout-after-theming.gif)
+
+**Note 1:** Material has [over 900 free icons](https://fonts.google.com/icons?selected=Material+Icons) and, when required, [custom icons can be registered](projects/demo/src/app/layouts/main-layout/main-layout.component.ts) via a service.
+
+**Note 2:** Angular protects us against XSS attacks. Custom SVG source could be registered only after [explicit trust was granted](projects/demo/src/app/layouts/main-layout/main-layout.component.ts).
+
 ## Development
 
 ### Development server
