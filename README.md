@@ -97,6 +97,16 @@ $app-theme: mat-light-theme(
 
 **Note 2:** Angular protects us against XSS attacks. Custom SVG source could be registered only after [explicit trust was granted](projects/demo/src/app/layouts/main-layout/main-layout.component.ts).
 
+### How linter is run
+
+```sh
+yarn lint
+```
+
+![How to run linter](images/how-to-run-linter.gif)
+
+**Note:** TS Lint is deprecated and is expected to be replaced by Angular team.
+
 ## Development
 
 ### Development server
