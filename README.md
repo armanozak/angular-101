@@ -289,6 +289,73 @@ Although there is now an additional module between, nothing changes.
 
 ![How to refactor routes](images/how-to-refactor-routes.png)
 
+### How to create a new record
+
+```sh
+yarn ng g module todo-create --module=todos/todos --route=create
+```
+
+![How todo create module was generated](images/how-create-module-was-generated.gif)
+
+```ts
+@Component(/* removed for brevity */)
+export class TodoCreateComponent {
+  form!: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private todo: TodoService
+  ) {
+    this.buildForm();
+  }
+
+  goToListView() {
+    this.router.navigate([".."]);
+  }
+
+  submitForm() {
+    if (!this.form.valid) return;
+
+    this.todo.create(this.form.value).subscribe(() => this.goToListView());
+  }
+
+  private buildForm(): void {
+    this.form = this.fb.group({
+      title: [null, Validators.required],
+    });
+  }
+}
+```
+
+...and in template...
+
+```html
+<!-- removed for brevity -->
+
+<form [formGroup]="form" id="todo-form" (ngSubmit)="submitForm()">
+  <mat-form-field>
+    <mat-label>Todo title *</mat-label>
+    <input
+      matInput
+      formControlName="title"
+      placeholder="Become a Jedi Knight"
+      maxlength="256"
+      autocomplete="off"
+      #title
+    />
+    <mat-hint align="end">{{ title.value.length }} / 256</mat-hint>
+    <mat-error *ngIf="form.get('title')?.invalid">
+      Sorry, this field is <strong>required</strong>.
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<!-- removed for brevity -->
+```
+
+![How reactive forms work](images/how-reactive-forms-work.gif)
+
 ## Development
 
 ### Development server
