@@ -1,22 +1,55 @@
 <mat-card>
-  <mat-selection-list
-    *ngIf="list$ | async as list; else spinner"
-    (selectionChange)="toggleDone($event.option.value)"
-  >
-    <mat-list-option
-      [value]="todo"
-      [selected]="todo.done"
-      *ngFor="let todo of list.rows"
+  <ng-container *ngIf="list$ | async as list; else spinner">
+    <mat-selection-list
+      *ngIf="list.rows.length; else emptyState"
+      (selectionChange)="toggleDone($event.option.value)"
     >
-      <span [ngClass]="{ done: todo.done }">
-        {{ todo.title }}
-      </span>
-    </mat-list-option>
-  </mat-selection-list>
-
-  <ng-template #spinner>
-    <div class="spinner">
-      <mat-spinner diameter="60" color="accent"></mat-spinner>
-    </div>
-  </ng-template>
+      <mat-list-option
+        [value]="todo"
+        [selected]="todo.done"
+        *ngFor="let todo of list.rows"
+      >
+        <div class="todo-item">
+          <span [ngClass]="{ done: todo.done }">
+            {{ todo.title }}
+          </span>
+          <button
+            aria-label="Delete todo"
+            mat-icon-button
+            color="warn"
+            (click)="$event.stopPropagation(); deleteRecord(todo)"
+          >
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </ng-container>
 </mat-card>
+
+<ng-template #spinner>
+  <div class="spinner">
+    <mat-spinner diameter="60" color="accent"></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #emptyState>
+  <div class="empty-state">
+    <div class="huge-emoji">(o^^)o</div>
+    Hurray! You have no task to do.
+  </div>
+</ng-template>
+
+<ng-template #deleteDialog let-title>
+  <h2 mat-dialog-title>Delete Confirmation</h2>
+  <mat-dialog-content class="mat-typography">
+    <p>"{{ title }}" <strong>will be deleted forever</strong>.</p>
+    <p>Do you want to continue deleting?</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    <button mat-flat-button color="warn" [mat-dialog-close]="true">
+      Delete
+    </button>
+  </mat-dialog-actions>
+</ng-template>
