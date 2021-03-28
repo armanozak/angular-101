@@ -1,0 +1,27 @@
+:host {
+  --todo-list-padding: 20px;
+}
+
+mat-card {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: var(--todo-list-padding);
+}
+
+mat-selection-list {
+  padding: 0;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(
+    var(--container-min-height) - 2 * var(--container-padding) - 2 *
+      var(--todo-list-padding)
+  );
+}
+
+.done {
+  text-decoration: line-through;
+}

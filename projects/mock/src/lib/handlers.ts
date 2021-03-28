@@ -24,7 +24,7 @@ export const handlers = [
     '/api/todos',
     handleErrors(async (req, res, ctx) => {
       const todos = await getTodos(getLimitAndSkip(req));
-      return res(ctx.json(todos));
+      return res(ctx.delay(2000), ctx.json(todos));
     })
   ),
 

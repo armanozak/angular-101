@@ -1,5 +1,15 @@
 @import "../../../sass/variables";
 
+:host {
+  --container-min-height: calc(100vh - 100px);
+  --container-padding: 30px;
+
+  @media (max-width: 599px) {
+    --container-min-height: calc(100vh - 92px);
+    --container-padding: 20px;
+  }
+}
+
 .title {
   display: inline-block;
   padding: 0 0.5em;
@@ -12,7 +22,9 @@ mat-icon {
 }
 
 main {
-  min-height: calc(100vh - 100px);
+  box-sizing: border-box;
+  min-height: var(--container-min-height);
+  padding: var(--container-padding);
 }
 
 footer {
