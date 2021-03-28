@@ -174,6 +174,46 @@ This is due to lack of proper asynchronous initialization. `APP_INITIALIZER` ser
 
 ![Clearing site data after async initializer implementation](images/clear-site-data-after-async-initializer.gif)
 
+### How to update a record
+
+CRUD operations via AJAX are probably the most common implementations in web development. Angular has an awesome `HttpClient` to do all sorts of HTTP requests.
+
+```ts
+@Injectable()
+export class TodoService {
+  constructor(private http: HttpClient) {}
+
+  update(id: string, input: TodoUpdate) {
+    return this.http.put<void>(`/api/todos/${id}`, input);
+  }
+}
+```
+
+...and in component class...
+
+```ts
+@Component(/* removed for brevity */)
+export class TodoListComponent {
+  private listUpdate$ = new Subject<void>();
+
+  list$ = merge(of(0), this.listUpdate$).pipe(
+    switchMap(() => this.todo.getList())
+  );
+
+  constructor(private todo: TodoService, private dialog: MatDialog) {}
+
+  toggleDone(todo: Rec<Todo>) {
+    this.todo
+      .update(todo.id, { title: todo.title, done: !todo.done })
+      .subscribe(() => this.listUpdate$.next());
+  }
+}
+```
+
+![How to update a record](images/how-to-update-a-record.gif)
+
+**Note:** Did you notice the canceled request? This is due to use of `switchMap` in `list$`.
+
 ## Development
 
 ### Development server
