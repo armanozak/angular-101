@@ -131,6 +131,26 @@ yarn ng g library mock --entry-file=index --skip-package-json
 
 **Note:** Using MSW is a personal preference. There are other mocking options such as [Angular in-memory-web-api](https://github.com/angular/angular/tree/master/packages/misc/angular-in-memory-web-api) or providing mock services with dependency injection.
 
+### How AsyncPipe, ngIf, nfFor, and ngClass works
+
+```html
+<mat-card>
+  <mat-selection-list *ngIf="list$ | async as list; else spinner">
+    <mat-list-option [selected]="todo.done" *ngFor="let todo of list.rows">
+      <span [ngClass]="{ done: todo.done }">{{ todo.title }}</span>
+    </mat-list-option>
+  </mat-selection-list>
+
+  <ng-template #spinner>
+    <div class="spinner">
+      <mat-spinner diameter="60" color="accent"></mat-spinner>
+    </div>
+  </ng-template>
+</mat-card>
+```
+
+![How AsyncPipe, ngIf, nfFor, and ngClass works](images/async-ngif-ngfor-ngclass.gif)
+
 ## Development
 
 ### Development server
