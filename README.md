@@ -151,6 +151,29 @@ yarn ng g library mock --entry-file=index --skip-package-json
 
 ![How AsyncPipe, ngIf, nfFor, and ngClass works](images/async-ngif-ngfor-ngclass.gif)
 
+### How to execute async operations before initialization
+
+The mock DB implementation so far has an error. When site data is cleared and the page is refreshed, the first response is empty.
+
+![Clearing site data before async initializer implementation](images/clear-site-data-before-async-initializer.gif)
+
+This is due to lack of proper asynchronous initialization. `APP_INITIALIZER` serves that purpose.
+
+```ts
+{
+  provide: APP_INITIALIZER,
+  useFactory: () => {
+    return async () => {
+      await seedDb();
+      worker.start();
+    };
+  },
+  multi: true,
+}
+```
+
+![Clearing site data after async initializer implementation](images/clear-site-data-after-async-initializer.gif)
+
 ## Development
 
 ### Development server
