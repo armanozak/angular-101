@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import type { Rec, Todo } from '@ng101/mock';
 import { EMPTY, merge, of, Subject } from 'rxjs';
 import { concatMap, switchMap } from 'rxjs/operators';
-import { TodoService } from './todo.service';
+import { TodoService } from '../todos/todo.service';
 
 @Component({
   selector: 'app-todo-list',

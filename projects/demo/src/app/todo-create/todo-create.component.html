@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-title>New todo</mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="form" id="todo-form" (ngSubmit)="submitForm()">
+      <mat-form-field>
+        <mat-label>Todo title *</mat-label>
+        <input
+          matInput
+          formControlName="title"
+          placeholder="Become a Jedi Knight"
+          maxlength="256"
+          autocomplete="off"
+          #title
+        />
+        <mat-hint align="end">{{ title.value.length }} / 256</mat-hint>
+        <mat-error *ngIf="form.get('title')?.invalid">
+          Sorry, this field is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <pre><code>{{ form.value | json }}</code></pre>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button (click)="goToListView()">CANCEL</button>
+    <button mat-flat-button color="accent" form="todo-form">SAVE</button>
+  </mat-card-actions>
+</mat-card>

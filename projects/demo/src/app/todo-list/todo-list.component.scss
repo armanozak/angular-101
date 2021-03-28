@@ -42,3 +42,13 @@ mat-selection-list {
   font-size: 90px;
   line-height: 1.5;
 }
+
+.footer {
+  padding: 12px 0;
+  text-align: center;
+
+  mat-icon {
+    display: inline-block;
+    margin: -3px 0 0 -4px;
+  }
+}

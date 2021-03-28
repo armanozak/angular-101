@@ -1,5 +1,5 @@
-<mat-card>
-  <ng-container *ngIf="list$ | async as list; else spinner">
+<ng-container *ngIf="list$ | async as list; else spinner">
+  <mat-card>
     <mat-selection-list
       *ngIf="list.rows.length; else emptyState"
       (selectionChange)="toggleDone($event.option.value)"
@@ -24,8 +24,15 @@
         </div>
       </mat-list-option>
     </mat-selection-list>
-  </ng-container>
-</mat-card>
+  </mat-card>
+
+  <div class="footer">
+    <a mat-button color="primary" routerLink="create">
+      <mat-icon>add</mat-icon>
+      Create new todo
+    </a>
+  </div>
+</ng-container>
 
 <ng-template #spinner>
   <div class="spinner">

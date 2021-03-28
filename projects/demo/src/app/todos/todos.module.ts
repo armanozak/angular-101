@@ -18,6 +18,13 @@ import { MainLayoutModule } from '../layouts/main-layout/main-layout.module';
                 (m) => m.TodoListModule
               ),
           },
+          {
+            path: 'create',
+            loadChildren: () =>
+              import('../todo-create/todo-create.module').then(
+                (m) => m.TodoCreateModule
+              ),
+          },
         ],
       },
     ]),
