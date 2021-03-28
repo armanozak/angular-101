@@ -25,3 +25,9 @@ mat-selection-list {
 .done {
   text-decoration: line-through;
 }
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

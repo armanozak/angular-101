@@ -1,7 +1,16 @@
 <mat-card>
-  <mat-selection-list *ngIf="list$ | async as list; else spinner">
-    <mat-list-option [selected]="todo.done" *ngFor="let todo of list.rows">
-      <span [ngClass]="{ done: todo.done }">{{ todo.title }}</span>
+  <mat-selection-list
+    *ngIf="list$ | async as list; else spinner"
+    (selectionChange)="toggleDone($event.option.value)"
+  >
+    <mat-list-option
+      [value]="todo"
+      [selected]="todo.done"
+      *ngFor="let todo of list.rows"
+    >
+      <span [ngClass]="{ done: todo.done }">
+        {{ todo.title }}
+      </span>
     </mat-list-option>
   </mat-selection-list>
 
