@@ -214,6 +214,33 @@ export class TodoListComponent {
 
 **Note:** Did you notice the canceled request? This is due to use of `switchMap` in `list$`.
 
+### How to delete a record
+
+Sometimes, we need to get some confirmation before proceeding with the request. `HttpClient` uses [RxJS observables](https://rxjs.dev/), so that usually is quite easy.
+
+```ts
+@Component(/* removed for brevity */)
+export class TodoListComponent {
+  @ViewChild("deleteDialog") deleteDialog?: TemplateRef<any>;
+
+  /* removed for brevity */
+
+  deleteRecord(todo: Rec<Todo>) {
+    this.dialog
+      .open(this.deleteDialog!, { data: todo.title })
+      .afterClosed()
+      .pipe(
+        concatMap((confirmed) =>
+          confirmed ? this.todo.delete(todo.id) : EMPTY
+        )
+      )
+      .subscribe(() => this.listUpdate$.next());
+  }
+}
+```
+
+![How to delete a record](images/how-to-delete-a-record.gif)
+
 ## Development
 
 ### Development server
