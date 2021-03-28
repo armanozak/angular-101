@@ -45,6 +45,8 @@ export const handlers = [
     '/api/todos',
     handleErrors(async (req, res, ctx) => {
       validateTodoCreate(req.body);
+      if (req.body.title.toLowerCase() === 'error')
+        throw { status: 418, message: `i'm a teapot` };
       const todo = await postTodo(req.body);
       return res(ctx.json(todo));
     })
