@@ -356,6 +356,56 @@ export class TodoCreateComponent {
 
 ![How reactive forms work](images/how-reactive-forms-work.gif)
 
+### How HTTP errors were handled
+
+```sh
+yarn ng g interceptor common/error --flat
+```
+
+![How error interceptor was generated](images/how-error-interceptor-was-generated.gif)
+
+...then...
+
+```ts
+@Injectable()
+export class ErrorInterceptor implements HttpInterceptor {
+  constructor(private snackBar: MatSnackBar) {}
+
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    return next.handle(request).pipe(
+      catchError(({ error, status }) => {
+        this.snackBar.open(`${status}: ${error}`, "HTTP Error", {
+          duration: 3000,
+        });
+        return EMPTY;
+      })
+    );
+  }
+}
+```
+
+...and in root module...
+
+```ts
+@NgModule({
+  /* removed for brevity */
+
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
+})
+export class AppModule {}
+```
+
+**Note:** Http interceptors [can intercept outgoing requests as well](https://angular.io/guide/http#intercepting-requests-and-responses).
+
 ## Development
 
 ### Development server
