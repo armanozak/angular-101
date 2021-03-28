@@ -13,7 +13,7 @@ export async function seedDb() {
     { title: 'Learn the Force', done: false },
     { title: 'Get a lightsaber', done: true },
   ]);
-  dbTodos
+  const dbInit1 = dbTodos
     .info()
     .then((info) => (info.doc_count ? skip : dbTodos.bulkDocs(initialTodos)));
 
@@ -24,10 +24,12 @@ export async function seedDb() {
       username: 'luke',
     },
   ]);
-  dbUsers
+  const dbInit2 = dbUsers
     .info()
     .then((info) => (info.doc_count ? skip : dbUsers.bulkDocs(initialUsers)))
     .then(() => dbUsers.createIndex({ index: { fields: ['username'] } }));
+
+  return Promise.all([dbInit1, dbInit2]);
 }
 
 export async function deleteTodo(id: string) {

@@ -13,11 +13,8 @@ import {
   getUserByUsername,
   postTodo,
   putTodo,
-  seedDb,
 } from './db';
 import { validateTodoCreate, validateTodoUpdate } from './validation';
-
-seedDb();
 
 export const handlers = [
   rest.get(

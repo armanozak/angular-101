@@ -1,8 +1,20 @@
-import { worker } from '@ng101/mock';
-worker.start();
+import { APP_INITIALIZER } from '@angular/core';
+import { seedDb, worker } from '@ng101/mock';
 
 export const environment = {
   production: false,
+  initializers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => {
+        return async () => {
+          await seedDb();
+          worker.start();
+        };
+      },
+      multi: true,
+    },
+  ],
 };
 
 /*
