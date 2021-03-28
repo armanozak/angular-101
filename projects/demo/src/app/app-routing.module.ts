@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () =>
-      import('./todo-list/todo-list.module').then((m) => m.TodoListModule),
-  },
-];
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot([
+      {
+        path: '',
+        loadChildren: () =>
+          import('./todos/todos.module').then((m) => m.TodosModule),
+      },
+    ]),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -6,7 +6,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MainLayoutModule } from '../layouts/main-layout/main-layout.module';
 import { TodoListRoutingModule } from './todo-list-routing.module';
 import { TodoListComponent } from './todo-list.component';
 
@@ -15,7 +14,6 @@ import { TodoListComponent } from './todo-list.component';
   imports: [
     CommonModule,
     TodoListRoutingModule,
-    MainLayoutModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
