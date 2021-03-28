@@ -241,6 +241,54 @@ export class TodoListComponent {
 
 ![How to delete a record](images/how-to-delete-a-record.gif)
 
+### How to refactor routes
+
+Angular modules manage their own child routes and parent modules are unaware of grand child routes. This makes it easy to refactor routes.
+
+```ts
+@NgModule({
+  imports: [
+    RouterModule.forChild([{ path: "", component: TodoListComponent }]),
+  ],
+  exports: [RouterModule],
+})
+export class TodoListRoutingModule {}
+
+@NgModule({
+  imports: [
+    RouterModule.forChild([
+      {
+        path: "",
+        component: MainLayoutComponent,
+        children: [
+          { path: "", pathMatch: "full", loadChildren: () => TodoListModule },
+        ],
+      },
+    ]),
+  ],
+  exports: [RouterModule],
+})
+export class TodosRoutingModule {}
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot([
+      {
+        path: "",
+        loadChildren: () =>
+          import("./todos/todos.module").then((m) => m.TodosModule),
+      },
+    ]),
+  ],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+```
+
+Although there is now an additional module between, nothing changes.
+
+![How to refactor routes](images/how-to-refactor-routes.png)
+
 ## Development
 
 ### Development server
